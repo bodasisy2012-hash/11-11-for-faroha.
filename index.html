@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11/11 — For My Beloved Farah</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Google Fonts: Playfair Display, Cormorant Garamond, Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif-display': ['Playfair Display', 'serif'],
+                        'serif-poetic': ['Cormorant Garamond', 'serif'],
+                        'sans-clean': ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        velvetDark: '#1a040c',
+                        velvetDeep: '#2d0615',
+                        roseRich: '#701132',
+                        roseAccent: '#be185d',
+                        champagne: '#f3d5a5',
+                        goldGlow: '#d4af37',
+                        creamSoft: '#fdf8f5',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: radial-gradient(circle at top center, #3b081b 0%, #1d040e 45%, #110208 100%);
+            color: #fdf8f5;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .glass-panel {
+            background: rgba(45, 6, 21, 0.55);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(243, 213, 165, 0.22);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+        }
+
+        .glass-card-light {
+            background: linear-gradient(145deg, rgba(253, 248, 245, 0.96), rgba(252, 238, 232, 0.92));
+            color: #2d0615;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+        }
+
+        @keyframes eqBounce {
+            0%, 100% { height: 4px; }
+            50% { height: 16px; }
+        }
+        .eq-bar {
+            width: 3px;
+            height: 4px;
+            background: #f3d5a5;
+            border-radius: 999px;
+            transition: height 0.2s ease;
+        }
+        .playing .eq-bar:nth-child(1) { animation: eqBounce 0.7s infinite ease-in-out; }
+        .playing .eq-bar:nth-child(2) { animation: eqBounce 0.5s infinite ease-in-out 0.15s; }
+        .playing .eq-bar:nth-child(3) { animation: eqBounce 0.8s infinite ease-in-out 0.3s; }
+        .playing .eq-bar:nth-child(4) { animation: eqBounce 0.6s infinite ease-in-out 0.1s; }
+
+        .envelope-wrapper { perspective: 1200px; }
+        .envelope {
+            position: relative;
+            width: 100%;
+            max-width: 440px;
+            height: 270px;
+            background: linear-gradient(145deg, #5c0c28, #380517);
+            border-radius: 18px;
+            border: 1px solid rgba(243, 213, 165, 0.3);
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 30px rgba(212, 175, 55, 0.15);
+            cursor: pointer;
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .envelope:hover { transform: translateY(-6px); }
+        .envelope-flap {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 145px;
+            background: linear-gradient(180deg, #7a1236, #520a23);
+            clip-path: polygon(0 0, 50% 96%, 100% 0);
+            transform-origin: top;
+            transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.75s;
+            z-index: 30;
+            border-top-left-radius: 18px;
+            border-top-right-radius: 18px;
+        }
+        .envelope.open .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 10;
+        }
+        .envelope-pocket {
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(0deg, #3b0618, #5c0c28);
+            clip-path: polygon(0 100%, 0 25%, 50% 65%, 100% 25%, 100% 100%);
+            z-index: 25;
+            border-bottom-left-radius: 18px;
+            border-bottom-right-radius: 18px;
+        }
+        .wax-seal {
+            position: absolute;
+            top: 106px; left: 50%;
+            transform: translateX(-50%);
+            width: 62px; height: 62px;
+            background: radial-gradient(circle at 30% 30%, #fce3b4, #b8860b 75%, #785504);
+            border-radius: 50%;
+            z-index: 35;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55), 0 0 18px rgba(243, 213, 165, 0.5);
+            border: 2px solid #fff3db;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .envelope.open .wax-seal {
+            opacity: 0;
+            transform: translateX(-50%) scale(0.4);
+            pointer-events: none;
+        }
+
+        .flip-card { perspective: 1000px; height: 205px; cursor: pointer; }
+        .flip-card-inner {
+            position: relative;
+            width: 100%; height: 100%;
+            text-align: center;
+            transition: transform 0.75s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%; height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 22px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.35rem;
+        }
+        .flip-card-front {
+            background: linear-gradient(145deg, rgba(66, 10, 31, 0.75), rgba(36, 5, 17, 0.85));
+            border: 1px solid rgba(243, 213, 165, 0.25);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+        }
+        .flip-card-back {
+            background: linear-gradient(145deg, #fdf8f5, #f7e6dc);
+            color: #2d0615;
+            transform: rotateY(180deg);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+            border: 1px solid #d4af37;
+        }
+
+        .polaroid-frame {
+            background: #fdfaf7;
+            padding: 14px 14px 20px 14px;
+            border-radius: 14px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+        }
+        .polaroid-frame:hover {
+            transform: translateY(-6px) rotate(0deg) !important;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 25px rgba(243, 213, 165, 0.2);
+        }
+
+        @keyframes floatLantern {
+            0% { transform: translateY(0) scale(0.85) rotate(-2deg); opacity: 0; }
+            15% { opacity: 1; }
+            50% { transform: translateY(-200px) scale(1) rotate(3deg); }
+            100% { transform: translateY(-460px) scale(0.55) rotate(-2deg); opacity: 0; }
+        }
+        .floating-lantern { animation: floatLantern 7.5s ease-in-out forwards; }
+
+        @keyframes gentlePulse {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.07); }
+        }
+        .animate-seal-pulse { animation: gentlePulse 2.6s infinite ease-in-out; }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(243, 213, 165, 0.25);
+            height: 4px;
+            border-radius: 999px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            background: #f3d5a5;
+            cursor: pointer;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1a040c; }
+        ::-webkit-scrollbar-thumb { background: #701132; border-radius: 10px; }
+    </style>
+</head>
+<body class="antialiased selection:bg-rose-800 selection:text-champagne">
+
+    <canvas id="bgCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+    <!-- HTML5 Audio for TUL8TE - Men Gheir Kalam -->
+    <audio id="customAudioPlayer" loop>
+        <source src="TUL8TE - Men Gheir Kalam I تووليت - من غير كلام(MP3_160K).mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Sticky Header & Music Player -->
+    <header class="sticky top-0 z-45 backdrop-blur-xl bg-[#1a040c]/85 border-b border-champagne/20 shadow-lg">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2.5">
+                <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-tr from-roseRich via-roseAccent to-goldGlow text-creamSoft font-serif-display font-bold text-sm shadow-md border border-champagne/40">
+                    11:11
+                </span>
+                <div>
+                    <span class="font-serif-display font-bold text-champagne text-base sm:text-lg tracking-wide block leading-none">11/11 Love Edition</span>
+                    <span class="text-[11px] text-rose-200/70 tracking-widest uppercase">Abdul Rahman & Farah</span>
+                </div>
+            </div>
+
+            <!-- Music Widget -->
+            <div class="flex items-center gap-2 sm:gap-3 bg-velvetDeep/90 border border-champagne/25 rounded-full px-3 py-1.5 shadow-inner">
+                <button id="playPauseBtn" onclick="toggleAudioPlayback()" title="Play / Pause TUL8TE"
+                    class="w-8 h-8 rounded-full bg-gradient-to-tr from-goldGlow to-champagne text-velvetDark flex items-center justify-center font-bold text-xs shadow hover:scale-105 transition">
+                    <span id="playPauseIcon">▶</span>
+                </button>
+
+                <div class="flex items-center gap-2">
+                    <div id="eqVisualizer" class="flex items-end gap-0.5 h-4 px-1">
+                        <span class="eq-bar"></span>
+                        <span class="eq-bar"></span>
+                        <span class="eq-bar"></span>
+                        <span class="eq-bar"></span>
+                    </div>
+                    <span class="text-champagne text-xs font-semibold truncate max-w-[160px] sm:max-w-[210px]">
+                        🎵 TUL8TE - Men Gheir Kalam
+                    </span>
+                </div>
+
+                <div class="hidden md:flex items-center gap-1.5 pl-2 border-l border-champagne/20">
+                    <span class="text-xs text-champagne/80">🔊</span>
+                    <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.75" oninput="updateVolume(this.value)" class="w-14">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="relative z-10">
+
+        <!-- Hero Section -->
+        <section class="min-h-[86vh] flex flex-col items-center justify-center text-center px-4 py-14 max-w-4xl mx-auto">
+            <div class="inline-flex items-center gap-2.5 px-5 py-1.5 rounded-full bg-champagne/10 border border-champagne/30 text-champagne text-xs sm:text-sm font-medium tracking-widest uppercase mb-6 shadow-lg">
+                <span>✨</span>
+                <span>November 11 • 11:11 Make A Wish</span>
+                <span>✨</span>
+            </div>
+
+            <p class="font-serif-poetic italic text-2xl sm:text-4xl text-champagne mb-3">
+                For My Beloved Farah ❤️
+            </p>
+
+            <h1 class="font-serif-display text-4xl sm:text-6xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-creamSoft via-champagne to-rose-200 leading-tight mb-6">
+                11/11 — Happy 11/11, My Love Farah
+            </h1>
+
+            <p class="font-serif-poetic text-xl sm:text-2xl text-rose-100/85 max-w-2xl leading-relaxed mb-7">
+                On this rare alignment of numbers, when the universe pauses to grant its purest wishes, I want you to know that you are the greatest wish my heart has ever made—and the sweetest reality I get to live every day.
+            </p>
+
+            <div class="flex flex-wrap items-center justify-center gap-4">
+                <a href="#letter-section" class="px-8 py-3.5 rounded-full bg-gradient-to-r from-goldGlow via-champagne to-amber-200 text-velvetDark font-bold text-sm sm:text-base shadow-xl hover:scale-105 transition">
+                    Unseal Your Love Letter 💌
+                </a>
+                <a href="#memories-section" class="px-7 py-3.5 rounded-full glass-panel hover:bg-roseRich/40 text-champagne font-semibold text-sm sm:text-base transition">
+                    Our Photo Memories 📸
+                </a>
+            </div>
+        </section>
+
+        <!-- Wax-Sealed Letter -->
+        <section id="letter-section" class="py-16 px-4 max-w-4xl mx-auto">
+            <div class="text-center mb-10">
+                <span class="text-champagne/80 font-semibold text-xs tracking-[0.25em] uppercase">Sealed With Devotion</span>
+                <h2 class="font-serif-display text-3xl sm:text-5xl font-bold text-creamSoft mt-2">A Letter Written for Your Heart</h2>
+                <p class="text-rose-200/75 mt-2 text-sm sm:text-base">Tap the golden 11:11 wax seal to unfold your message</p>
+            </div>
+
+            <div class="envelope-wrapper flex flex-col items-center justify-center my-6">
+                <div id="loveEnvelope" class="envelope" onclick="toggleEnvelope()">
+                    <div class="envelope-flap"></div>
+                    <div class="wax-seal animate-seal-pulse">
+                        <span class="font-serif-display text-velvetDark font-extrabold text-sm tracking-tight">11:11</span>
+                    </div>
+                    <div class="envelope-pocket flex items-end justify-center pb-6">
+                        <span class="text-champagne/90 text-xs sm:text-sm font-medium tracking-widest uppercase">Tap to Break the Seal ✨</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="revealedLetter" class="hidden mt-10 transition-all duration-700 transform opacity-0 translate-y-4">
+                <div class="glass-card-light rounded-3xl p-7 sm:p-12 relative overflow-hidden">
+                    <div class="flex items-center justify-between border-b border-rose-900/15 pb-4 mb-6">
+                        <span class="font-serif-display italic text-2xl text-roseRich font-bold">My Dearest Farah,</span>
+                        <span class="px-3.5 py-1 rounded-full bg-roseRich/10 text-roseRich text-xs font-bold tracking-wider">NOVEMBER 11</span>
+                    </div>
+
+                    <div class="font-serif-poetic text-xl sm:text-2xl text-velvetDeep leading-relaxed space-y-5">
+                        <p>They say that when the clock strikes <strong>11:11</strong>, the universe aligns to listen to the whispers of our hearts. And when the calendar reaches <strong>11/11</strong>, it celebrates twin souls finding their way to one another.</p>
+                        <p>For me, Farah, you are not a fleeting wish made at a lucky hour—you are the answered prayer I hold in my arms every single day. Loving you has turned ordinary moments into poetry and given my life a warmth I never knew existed.</p>
+                        <p>On this special day, I promise to always be your safe harbor, your biggest supporter, and the person who loves you deeper with every passing year. Happy 11/11, my love.</p>
+                    </div>
+
+                    <div class="mt-9 pt-5 border-t border-rose-900/15 flex items-center justify-between">
+                        <div>
+                            <p class="text-xs uppercase tracking-widest text-roseRich/70 font-semibold">With all that I am,</p>
+                            <p class="font-serif-display italic text-2xl sm:text-3xl font-bold text-roseRich mt-0.5">Forever yours, Abdul Rahman ❤️</p>
+                        </div>
+                        <button onclick="triggerHeartBurst()" class="px-6 py-3 rounded-full bg-roseRich hover:bg-roseAccent text-creamSoft text-sm font-semibold shadow-md transition flex items-center gap-2">
+                            <span>Send a Heartbeat</span>
+                            <span>💖</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Permanent Photo Memories Gallery (Loaded with your 5 photos) -->
+        <section id="memories-section" class="py-16 px-4 max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="text-champagne/80 font-semibold text-xs tracking-[0.25em] uppercase">Captured Moments</span>
+                <h2 class="font-serif-display text-3xl sm:text-5xl font-bold text-creamSoft mt-1">Our 11:11 Photo Memories</h2>
+                <p class="text-rose-200/75 mt-2 text-sm sm:text-base">All our favorite memories together, permanently displayed</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Photo 1 -->
+                <div class="polaroid-frame -rotate-1">
+                    <div class="w-full h-64 rounded-lg overflow-hidden bg-black/10">
+                        <img src="1001814799.jpg" alt="Memory 1" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="pt-3.5 px-1">
+                        <p class="font-serif-display italic font-bold text-lg text-velvetDeep">Our Beautiful Moments ❤️</p>
+                        <span class="text-[11px] uppercase tracking-widest text-roseRich/75 font-semibold">November 11</span>
+                    </div>
+                </div>
+
+                <!-- Photo 2 -->
+                <div class="polaroid-frame rotate-1">
+                    <div class="w-full h-64 rounded-lg overflow-hidden bg-black/10">
+                        <img src="1001814797.jpg" alt="Memory 2" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="pt-3.5 px-1">
+                        <p class="font-serif-display italic font-bold text-lg text-velvetDeep">11:11 Magic ✨</p>
+                        <span class="text-[11px] uppercase tracking-widest text-roseRich/75 font-semibold">Abdul Rahman & Farah</span>
+                    </div>
+                </div>
+
+                <!-- Photo 3 -->
+                <div class="polaroid-frame -rotate-1">
+                    <div class="w-full h-64 rounded-lg overflow-hidden bg-black/10">
+                        <img src="1001814795.jpg" alt="Memory 3" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="pt-3.5 px-1">
+                        <p class="font-serif-display italic font-bold text-lg text-velvetDeep">My Safe Harbor 💫</p>
+                        <span class="text-[11px] uppercase tracking-widest text-roseRich/75 font-semibold">Forever & Always</span>
+                    </div>
+                </div>
+
+                <!-- Photo 4 -->
+                <div class="polaroid-frame rotate-1 sm:col-span-2 lg:col-span-2">
+           
